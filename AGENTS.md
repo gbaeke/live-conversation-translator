@@ -12,10 +12,6 @@ Git integration is already configured for the existing Vercel project. Push the 
 git push origin master
 ```
 
-Vercel builds and deploys automatically. The connected domain is:
-
-```text
-https://translate.baeke.info
-```
+Vercel builds and deploys automatically. The connected custom domain is configured in Vercel and must be kept in server-side environment variables rather than committed to the repository.
 
 Keep `OPENAI_API_KEY` configured only as a server-side Vercel environment variable. Never commit `.env.local` or expose the key to browser code.

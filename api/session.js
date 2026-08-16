@@ -1,5 +1,15 @@
 const ALLOWED_TARGET_LANGUAGES = new Set(["en", "nl"]);
 const ALLOWED_SOURCE_LANGUAGES = new Set(["auto", "ro", "hu"]);
+const APP_HOSTNAME = process.env.APP_HOSTNAME?.toLowerCase();
+
+function requestHostname(req) {
+  return String(req.headers.host || "").split(":")[0].toLowerCase();
+}
+
+function isVercelRequest(req) {
+  if (!process.env.VERCEL && !process.env.VERCEL_ENV) return false;
+  return !APP_HOSTNAME || requestHostname(req) !== APP_HOSTNAME;
+}
 
 function json(res, status, body) {
   res.status(status).setHeader("Content-Type", "application/json");
@@ -56,6 +66,10 @@ export async function createTranslationClientSecret(body = {}) {
 }
 
 export default async function handler(req, res) {
+  if (isVercelRequest(req)) {
+    return json(res, 403, { error: "Use the app's protected hostname." });
+  }
+
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return json(res, 405, { error: "Method not allowed." });

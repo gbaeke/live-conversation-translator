@@ -91,6 +91,8 @@ vercel --prod
 
 The deployment must contain `OPENAI_API_KEY` as a server-side Production environment variable. Do not expose or log its value. If it is missing, `/api/session` returns a clear configuration error instead of attempting a session.
 
+Set `APP_HOSTNAME` as a server-side Production environment variable to the protected custom hostname. The API rejects Vercel-hosted requests whose hostname does not match it; if the variable is missing in Vercel, the API fails closed.
+
 ## Privacy and behavior
 
 - No transcript or audio is persisted by the app by default.
