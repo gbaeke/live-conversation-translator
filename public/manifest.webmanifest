@@ -1,0 +1,10 @@
+{
+  "name": "Lingua — live conversation translator",
+  "short_name": "Lingua",
+  "description": "Text-first live translation for Romanian and Hungarian conversations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2efe8",
+  "theme_color": "#f2efe8",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
